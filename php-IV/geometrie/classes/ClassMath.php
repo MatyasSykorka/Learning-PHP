@@ -45,11 +45,11 @@
         }
 
         private function ObsahObII() {
-            return (pi()*($this->PrumerObliceje)/2)**2;
+            return pi()*(($this->PrumerObliceje/2)**2);
         }
 
         private function ObsahOkaII() {
-            return (pi()*($this->PrumerOka)/2)**2;
+            return pi()*(($this->PrumerOka/2)**2);
         }
 
         private function VypocetII() {
