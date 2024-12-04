@@ -14,7 +14,7 @@
     </head>
     <body
         class="
-            p-6
+            p-7
             bg-red-600
         "
     >
@@ -30,6 +30,10 @@
         </h1>
         <div
             id="galerie"
+            class="
+                ml-auto
+                mr-auto
+            "
         >
             <?php
                 /*
