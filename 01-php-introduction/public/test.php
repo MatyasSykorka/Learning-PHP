@@ -3,30 +3,30 @@
 PHP test code.
 
 <?php
-// types of varriables
-(int)$cisla = 4;
-(string)$textNeboZnak = "php bude pain";
-(bool)$bool = true;
+    // types of varriables
+    (int)$cisla = 4;
+    (string)$textNeboZnak = "php bude pain";
+    (bool)$bool = true;
 
-(array)(int)$pole = array(1, 12, 3, 54, 7, 78, 71, 100); // creating new array with ints
+    (array)(int)$pole = array(1, 12, 3, 54, 7, 78, 71, 100); // creating new array with ints
 
-$pole[] = 1000000; // adding new value to array
-for ((int)$i = 0; $i < sizeof($pole); $i++) {
-    echo "$i. hodnota je $pole[$i]"; // printing values
-}
+    $pole[] = 1000000; // adding new value to array
+    for ((int)$i = 0; $i < sizeof($pole); $i++) {
+        echo "$i. hodnota je $pole[$i]"; // printing values
+    }
 
-foreach ($pole as $key => $value) {
-    echo "Hodnota " . $value . '<br>';
-}
+    foreach ($pole as $key => $value) {
+        echo "Hodnota " . $value . '<br>';
+    }
 
-var_dump($cisla); // vypíše obsah proměné
+    var_dump($cisla); // vypíše obsah proměné
 
-echo count($pole);
+    echo count($pole);
 
-function funkce($a, $b): int
-{
-    return $a + $b;
-}
+    function funkce($a, $b): int
+    {
+        return $a + $b;
+    }
 ?>
 
 -->
