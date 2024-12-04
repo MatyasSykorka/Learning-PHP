@@ -33,6 +33,7 @@
             class="
                 ml-auto
                 mr-auto
+                size-1/2
             "
         >
             <?php
