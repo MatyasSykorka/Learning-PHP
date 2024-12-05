@@ -30,7 +30,7 @@
             id="gallery"
         >
             <?php
-                $Obrazky = new fileDir("./myPic/full-size/", 4, 2);
+                $Obrazky = new fileDir("./myPic/preview/", 5, 0);
 
                 echo $Obrazky->Vypis();
             ?>

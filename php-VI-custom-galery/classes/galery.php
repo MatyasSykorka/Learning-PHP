@@ -1,8 +1,10 @@
 <?php
     class fileDir {
-        public string $Adresar;
-        public int $Sloupce;
-        public int $Radky;
+        private string $Adresar;
+        private int $Sloupce;
+        private int $Radky;
+
+        public string $AdresarFullPic = "./myPic/full-size/";
 
         public function __construct(
             private string $path, 
@@ -25,16 +27,21 @@
                 if ($statement == true) {
                     $imagePath = $this->Adresar . $pic;
                     echo '
-                        <img 
-                            class=" 
-                                rounded-3xl 
-                                border-4 
-                                border-yellow-500
-                                size-auto
-                            " 
-                            src="' . $imagePath . '" 
-                            alt="Image ' . $pic . '"
+                        <a
+                            href="' . $this->AdresarFullPic . $pic .'"
                         >
+                            <img 
+                                class=" 
+                                    rounded-2xl 
+                                    border-4 
+                                    border-red-600
+                                    size-auto
+                                    mb-3
+                                " 
+                                src="' . $imagePath . '" 
+                                alt="Image ' . $pic . '"
+                            >
+                        </a>
                     ';
                 }
             }
@@ -45,17 +52,22 @@
                 <div
                     class="
                         pt-4
-                        pr-2
-                        pl-2
                         pb-7
+                        pl-3
+                        pr-3
+                        ml-auto
+                        mr-auto
+                        justify-center
+                        place-items-center
                         bg-gray-100
-                        block
                         grid
                         grid-cols-'. $this->Sloupce .'
                         grid-rows-'. $this->Radky .'
                         border-4
                         border-black
-                        rounded-xl
+                        rounded-3xl
+                        w-3/4
+                        mt-8
                     "
                 >';
                     $this->Vystup();
