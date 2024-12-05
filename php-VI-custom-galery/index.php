@@ -26,11 +26,13 @@
         >
             Gallery
         </h1>
-        <div>
+        <div
+            id="gallery"
+        >
             <?php
-                // $Obrazky = new fileDir("./myPic/", 2, 5);
+                $Obrazky = new fileDir("./myPic/full-size/", 4, 2);
 
-                // echo $Obrazky->Vystup();
+                echo $Obrazky->Vypis();
             ?>
         </div>
     </body>

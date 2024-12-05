@@ -26,7 +26,17 @@
                 $statement = strpos($pic, ".jpg");
                 if ($statement == true) {
                     $imagePath = "./pictures/" . $pic;
-                    echo '<img class="m-5 rounded-3xl border-4 border-yellow-500" src="' . $imagePath . '" alt="Image ' . $pic . '">';
+                    echo '
+                        <img 
+                            class="m-5 
+                                rounded-3xl 
+                                border-4 
+                                border-yellow-500
+                            " 
+                            src="' . $imagePath . '" 
+                            alt="Image ' . $pic . '"
+                        >
+                    ';
                 }
             }
         }
