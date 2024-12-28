@@ -67,7 +67,7 @@
                         border-black
                         rounded-3xl
                         w-3/4
-                        mt-8
+                        mt-4
                     "
                 >'
             ;
