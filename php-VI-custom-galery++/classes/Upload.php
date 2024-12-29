@@ -1,103 +1,61 @@
 <?php
     class Upload {
-        public $CelySoubor;
-        public $Path;
-        public $NewFile;
-
-        // konstruktor, vkládáme cestu a soubor
-        public function __construct(
-            public $Cesta, 
-            public $Soubor
-        ) {
-            $this->Path = $Cesta;
-            $this->NewFile = $Soubor;
+        private $allowedExtensions = [
+            'jpg', 
+            'jpeg', 
+            'png', 
+            'gif'
+        ];
+        private $maxFileSize = 3 * 1024 * 1024; // 3MB
+        private $ErrorCode = 0;
+    
+        // Odešle obrázek do funkce checkFile, pokud bude úšpěšný odešle se na server 
+        public function uploadImage($file) {
+            $this->checkFile($file);
+            $this->moveFile($file);
         }
-
-        // Kontrola nahraného souboru
-        private function CheckFile() {
-            // Sestrojení celého souboru
-            $this->CelySoubor = $this->Cesta . basename($this->Soubor);
-            /* var_dump($this->CelySoubor); */
-
-            // Kontrola jestli je náš soubor typu obrázek 
-            $ObrTypSouboru = strtolower(pathinfo($this->CelySoubor,PATHINFO_EXTENSION));
-            
-            
-
-            if ($_FILES["FileToUpload"]["error"] === UPLOAD_ERR_OK) {
-                $kontrola = getimagesize($_FILES["FileToUpload"]["tmp_name"]);
-                $uploadOK = 0;
-            
-                // je soubor typu obrázek?
-                if($kontrola !== false) {
-                    echo "Soubor je obrázek - " . $kontrola["mime"] . ".";
-                    $uploadOK = 0;
-                }
-                else {
-                    echo "Soubor není obrázkový.";
-                    $uploadOK = 1;
-                }
-            }
-            else {
-                echo "Žádný soubor nebyl nahrán.";
-                $uploadOK = 4;
-            }
-
-            // zjistíme zda obrázek není velikostí na úložný prostor větší než 3MB
-            if ($_FILES["FileToUpload"]["size"] > 3000000) {
-                echo "Obrázek je až moc velký!";
-                $uploadOK = 2;
-            }
-
-            // Zjistíme jakou příponu má obrázek
-            if(
-                $ObrTypSouboru != "jpg" 
-                && $ObrTypSouboru != "png" 
-                && $ObrTypSouboru != "jpeg" 
-                && $ObrTypSouboru != "gif" 
-            ) {
-                echo "Pouze JPG, JPEG, PNG & GIF formáty jsou povolené.";
-                $uploadOK = 4;
-            }
-
-            // Zjistíme zda-li existuje
-            if (file_exists($this->CelySoubor)) {
-                echo "Soubor na serveru existuje.";
-                $uploadOK = 3;
-            }
-            else {
-                echo "Soubor na serveru NEexistuje";
-                $uploadOK = 5;
-            }
-
-            $uploadOK;
+    
+        // Funkce kontroly ...
+        private function checkFile($file) {
+            $this->Extension($file['name']);
+            $this->Size($file['size']);
+            $this->IfImage($file['tmp_name']);
+            $this->IfExists($file['name']);
         }
-
-        // Funkce pro výstup všech chyb
-        public function ErrorCodes() {
-            if($this->CheckFile() == 1) {
-
+    
+        // Kontrola přípony 
+        private function Extension($filename) {
+            $kontrolakoncovky = pathinfo($filename, PATHINFO_EXTENSION);
+            if (!in_array(strtolower($kontrolakoncovky), $this->allowedExtensions)) {
+                throw new Exception("Není soubor nebo nepodporovaný formát souboru. Lze jpg, png, jpeg, gif!");
             }
         }
-
-        // Funkce pro nahrání obrázku
-        public function UploadNewImage() {
-            // Podle výstupu funkce se rozhodne zda-li obrázek se odešle, či ne.
-            if($this->CheckFile() == 0) {
-                if (move_uploaded_file($_FILES["FileToUpload"]["tmp_name"], $this->CelySoubor)) {
-                    echo "Obrázek " . htmlspecialchars(basename($this->Soubor)) . " se úspěšně nahrál na server!";
-                }
-                /*
-                else {
-                    echo "Omlouvám se, během nahrávání nastala chyba.";
-                }
-                */
+    
+        // Kontrola velikosti obrázku (MB)
+        private function Size($size) {
+            if ($size > $this->maxFileSize) {
+                throw new Exception("Soubor je příliš velký. Maximální velikost je 3MB!");
             }
-            /*
-            else {
-                echo "Obrázek se nemůže nahrát!";
+        }
+    
+        // Kontroluje zda je soubor opravdu obrázek
+        private function IfImage($tmpName) {
+            if (!getimagesize($tmpName)) {
+                throw new Exception("Soubor není obrázkový!");
             }
-            */
+        }
+    
+        // Zkontroluje, zda na serveru jsou stejné obrázky
+        private function IfExists($filename) {
+            if (file_exists("pictures/full-size/" . $filename)) {
+                throw new Exception("Soubor již existuje!");
+            }
+        }
+        
+        // Odešle obrázek na server
+        private function moveFile($file) {
+            move_uploaded_file($file['tmp_name'], "./pictures/full-size/" . $file['name']);
+            // throw new Exception("Obrázek byl úspěšně odeslán.");
         }
     }
 ?>

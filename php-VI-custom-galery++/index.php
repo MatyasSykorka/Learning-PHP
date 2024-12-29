@@ -30,7 +30,7 @@
         </h1>
 
         <div
-            id="upload form"
+            id="upload-form"
             class="
                 pt-3
                 pb-7
@@ -39,7 +39,7 @@
                 ml-auto
                 mr-auto
                 mt-8
-                w-3/4
+                w-2/4
                 bg-gray-100
                 border-black
                 border-4
@@ -64,9 +64,10 @@
                     class="
                         border-gray-500
                         bg-gray-300
-                        h-10
                         w-2/3
-                        m-auto
+                        p-2
+                        ml-auto
+                        mr-auto
                         rounded-xl
                         content-center
                     "
@@ -75,6 +76,9 @@
                         type="file"
                         name="FileToUpload"
                         id="FileToUpload"
+                        class="
+                            hover:font-bold
+                        "
                     >
                     <input 
                         type="submit" 
@@ -98,27 +102,74 @@
             id="gallery"
         >
             <?php
+                // phpinfo();
                 if(isset($_POST["submit"])) {
-                    // kam se obrázky budou odesílat
-                    $path = "./pictures/full-size/";
+                    // Do tříd se pošlou soubory
+                    $upload = new Upload();
+                    // $upload->uploadImage($_FILES["FileToUpload"]);
+                    try {
+                        $upload->uploadImage($_FILES["FileToUpload"]);
+                        // echo "Obrázek byl úspěšně nahrán.";
+                        echo 
+                            '<div
+                                class="
+                                    mt-4
+                                    h-16
+                                    w-60
+                                    bg-green-500
+                                    border-2
+                                    border-black
+                                    rounded-xl
+                                    content-center
+                                    text-center
+                                    font-bold
+                                    ml-auto
+                                    mr-auto
+                                "
+                            >
+                                <p>
+                                    Obrázek se úspěšně nahrál!
+                                </p>
+                            </div>'
+                        ;
+                    }
+                    catch (Exception $e) {
+                        echo '
+                            <div
+                                class="
+                                    mt-4
+                                    p-2
+                                    h-28
+                                    w-64
+                                    bg-red-600
+                                    border-4
+                                    border-black
+                                    rounded-2xl
+                                    ml-auto
+                                    mr-auto
+                                    font-bold
+                                    text-center
+                                    content-center
+                                "
+                            >'
+                        ;
+                            echo $e->getMessage();
+                        echo '</div>';                       
+                    }
                     
-                    // souboru a jeho vlastnosti
-                    $file = $_FILES["FileToUpload"]["name"];
+                    // Vloží cestu k originálnímu obrázku
+                    $Nahled = new ThumbI(
+                        "./pictures/full-size/" . $_FILES["FileToUpload"]["name"]
+                    );
 
-                    // var_dump($path);
-                    // var_dump($file);
-
-                    
-                    // Odešleme do třídy cestu k nahrání a soubor
-                    $Odeslat = new Upload($path, $file);
-                    
-                    // echo $Odeslat->CheckFile();
-                    $Odeslat->UploadNewImage();
-                    echo $Odeslat->ErrorCodes();
+                    // Vytvoří náhled
+                    $Nahled->createThumb(
+                        "./pictures/preview/" . $_FILES["FileToUpload"]["name"], 
+                        160
+                    );
                 }
 
-                $Obrazky = new fileDir("./pictures/preview/", 5, 0);
-
+                $Obrazky = new fileDir("./pictures/preview/", 7, 0);
                 echo $Obrazky->Vypis();
             ?>
         </div>

@@ -23,7 +23,24 @@
         public function Vystup() : void {
             foreach($this->Nacist() as $pic) {
                 // In linux must use if statement for "." and ".."
-                $statement = strpos($pic, ".jpg");
+                
+                if(strpos($pic, ".jpg") == true) {
+                    $statement = true;
+                }
+                else if(strpos($pic, ".png") == true) {
+                    $statement = true;
+                }
+                else if(strpos($pic, ".jpeg") == true) {
+                    $statement = true;
+                }
+                else if(strpos($pic, ".gif") == true) {
+                    $statement = true;
+                }
+                else {
+                    $statement = false;
+                }
+                
+
                 if ($statement == true) {
                     $imagePath = $this->Adresar . $pic;
                     echo '
