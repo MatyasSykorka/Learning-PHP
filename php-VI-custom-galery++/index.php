@@ -11,7 +11,9 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.tailwindcss.com"></script>
-        <title>Gallery</title>
+        <title>
+            Gallery
+        </title>
     </head>
     <body
         class="
@@ -61,6 +63,7 @@
                 </label>
                 <br>
                 <div
+                    id="file-inputs"
                     class="
                         border-gray-500
                         bg-gray-300
@@ -94,7 +97,6 @@
                         "
                     >
                 </div>
-                
             </form>
         </div>
 
@@ -134,6 +136,7 @@
                         ;
                     }
                     catch (Exception $e) {
+                        // pokud program našel chybu, vypíše se na stránku
                         echo '
                             <div
                                 class="
@@ -142,7 +145,7 @@
                                     h-28
                                     w-64
                                     bg-red-600
-                                    border-4
+                                    border-2 hover:border-4
                                     border-black
                                     rounded-2xl
                                     ml-auto
@@ -151,8 +154,8 @@
                                     text-center
                                     content-center
                                 "
-                            >'
-                        ;
+                            >
+                        ';
                             echo $e->getMessage();
                         echo '</div>';                       
                     }
@@ -169,6 +172,7 @@
                     );
                 }
 
+                // Vytvoří tabulku galerii obrázků
                 $Obrazky = new fileDir("./pictures/preview/", 7, 0);
                 echo $Obrazky->Vypis();
             ?>

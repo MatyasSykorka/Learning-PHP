@@ -1,13 +1,14 @@
 <?php
     class Upload {
+        // proměnná obsahující názvy přípon
         private $allowedExtensions = [
             'jpg', 
             'jpeg', 
             'png', 
             'gif'
         ];
+
         private $maxFileSize = 3 * 1024 * 1024; // 3MB
-        private $ErrorCode = 0;
     
         // Odešle obrázek do funkce checkFile, pokud bude úšpěšný odešle se na server 
         public function uploadImage($file) {

@@ -10,7 +10,7 @@
             
         // funkce, která vytváří malý duplikát obrázku
         public function createThumb($destImagePath, $thumbWidth=160) {
-            // Zjistí příponu obrázku a na základě toho vytvoří duplikát originálního obrázku
+            // Na základě přípony vytvoří duplikát originálního obrázku
             $extension = strtolower(pathinfo($this->source, PATHINFO_EXTENSION));
             switch ($extension) {
                 case 'jpg':
@@ -26,11 +26,8 @@
                 default:
                     return;
             }
-
-            // var_dump($this->source);
-            // var_dump($sourceImage);
             
-            // převezme "dymenze" originílního obrázku
+            // převezme "dymenze"/rozměry originílního obrázku
             $orgWidth = imagesx($sourceImage);
             $orgHeight = imagesy($sourceImage);
             // var_dump($orgHeight);
@@ -50,7 +47,7 @@
                 $orgHeight
             );
             
-            // Funkce se vyčistí po vykonání  
+            // Funkce se vyčistí po vykonání
             imagejpeg($destImage, $destImagePath);
             imagedestroy($sourceImage);
             imagedestroy($destImage);
