@@ -47,7 +47,7 @@
                 $orgHeight
             );
             
-            // Funkce se vyčistí po vykonání
+            // Funkce k vyčištění paměti
             imagejpeg($destImage, $destImagePath);
             imagedestroy($sourceImage);
             imagedestroy($destImage);
