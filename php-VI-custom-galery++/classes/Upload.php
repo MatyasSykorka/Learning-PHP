@@ -29,6 +29,7 @@
             $kontrolakoncovky = pathinfo($filename, PATHINFO_EXTENSION);
             if (!in_array(strtolower($kontrolakoncovky), $this->allowedExtensions)) {
                 throw new Exception("Není soubor nebo nepodporovaný formát souboru. Lze jpg, png, jpeg, gif!");
+                // throw new UserExeption("Error message");
             }
         }
     

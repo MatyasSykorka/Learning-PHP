@@ -6,6 +6,13 @@
 
         public string $AdresarFullPic = "./pictures/full-size/";
 
+        /* 
+        Konstruktor přijímá: 
+            - cestu k načtení souborů
+            - kolik sloupců
+            - kolik řádků 
+        
+        */ 
         public function __construct(
             private string $path, 
             private int $colums, 
@@ -16,14 +23,17 @@
             $this->Radky = $raws;
         }
 
+        // Načte adresář z konstruktora
         private function Nacist() : array {
             return scandir($this->Adresar);
         }
 
+        // Načte soubory z metody @this->Nacist() a zobrazí se na webové stránce 
         public function Vystup() : void {
             foreach($this->Nacist() as $pic) {
                 // In linux must use if statement for "." and ".."
                 
+                // Zjistí příponu obrázku
                 if(strpos($pic, ".jpg") == true) {
                     $statement = true;
                 }
@@ -40,7 +50,7 @@
                     $statement = false;
                 }
                 
-
+                // Pokud bude shoda s podmínkou @statement, zobrazí se obrázek na webovou stránku
                 if ($statement == true) {
                     $imagePath = $this->Adresar . $pic;
                     echo '
@@ -49,7 +59,7 @@
                         >
                             <img 
                                 class=" 
-                                    rounded-2xl 
+                                    rounded-xl 
                                     border-4 
                                     border-red-600 hover:border-purple-800
                                     size-auto
@@ -64,6 +74,7 @@
             }
         }
 
+        // Vytvoří tabulku pro umístění fotek a obrázků 
         public function Vypis() : void {
             echo '
                 <div

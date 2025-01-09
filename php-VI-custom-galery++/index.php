@@ -2,6 +2,7 @@
     require "./classes/galery.php";
     require "./classes/Upload.php";
     require "./classes/ImageThumb.php";
+    // require "./classes/UserException.php";
     // echo "test";
 ?>
 
@@ -11,6 +12,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="stylesheet" href="./styles/style.css">
         <title>
             Gallery
         </title>
@@ -104,8 +106,14 @@
             id="gallery"
         >
             <?php
-                // phpinfo();
-                if(isset($_POST["submit"])) {
+                /* 
+
+                // pro kontrolu knihovny GD 
+                phpinfo(); 
+                
+                */
+
+                if (isset($_POST["submit"])) {
                     // Do tříd se pošlou soubory
                     $upload = new Upload();
                     // $upload->uploadImage($_FILES["FileToUpload"]);
