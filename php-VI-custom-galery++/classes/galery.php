@@ -51,7 +51,7 @@
                                 class=" 
                                     rounded-2xl 
                                     border-4 
-                                    border-red-600
+                                    border-red-600 hover:border-purple-800
                                     size-auto
                                     mb-3
                                 " 
