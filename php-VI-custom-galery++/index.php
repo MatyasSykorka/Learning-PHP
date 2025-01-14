@@ -36,18 +36,18 @@
         <div
             id="upload-form"
             class="
-                pt-3
-                pb-7
-                pl-2
-                pr-2
-                ml-auto
-                mr-auto
-                mt-8
-                w-2/4
-                bg-gray-100
-                border-black
-                border-4
-                rounded-3xl
+                pt-3 
+                pb-7 
+                pl-2 
+                pr-2 
+                ml-auto 
+                mr-auto 
+                mt-8 
+                w-2/4 
+                bg-gray-100 
+                border-black 
+                border-4 
+                rounded-3xl 
                 text-center
             "
         >
