@@ -8,58 +8,51 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="./styles/style.css">
-        <title>Generator of random sentences</title>
+        <title>
+            Generátor náhodných vět
+        </title>
     </head>
     <body>
         <h1>
-            Generator
+            Generator vět
         </h1>
-        <div
-            class=""
+
+        <form 
+            method="POST"
+            action=<?php
+                echo $_SERVER['PHP_SELF'];
+            ?>
         >
-            <form 
-                method="post"
-                action=<?php
-                    echo $_SERVER['PHP_SELF'];
-                ?>
+            <label for="length">
+                Počet vět
+            </label>
+            <br>
+            <input
+                type="number"
+                name="length"
+                value= <?= (isset($_POST["length"]) ? $_POST["length"] : ""); ?>
             >
-                <label
-                    for="length"
-                >
-                    Počet vět
-                </label>
-                <br>
-                <input
-                    type="number"
-                    name="length"
-                    value= <?= (isset($_POST["length"]) ? $_POST["length"] : ""); ?>
-                >
-                <br>
-                <label
-                    for="numofsen"
-                >
-                    Kolik řádků vět
-                </label>
-                <br>
-                <input
-                    type="number"
-                    name="numofsen"
-                    value= <?= (isset($_POST["numofsen"]) ? $_POST["numofsen"] : ""); ?>
-                >
+            <br>
+            <label for="numofsen">
+                Odstavce
+            </label>
+            <br>
+            <input
+                type="number"
+                name="numofsen"
+                value= <?= (isset($_POST["numofsen"]) ? $_POST["numofsen"] : ""); ?>
+            >
 
-                <br><br>
+            <br><br>
+            
+            <button type="submit">
+                Generovat
+            </button>
+        </form>
 
-                <button
-                    type="submit"
-                >
-                    Generovat
-                </button>
-            </form>
-        </div>
-        <div
-            class="check"
-        >
+        <div class="check">
             <?php
+                // registrace metody POST
                 if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $delka = (int)$_POST['length'];
                     $pocet = (int)$_POST['numofsen'];
@@ -71,39 +64,47 @@
                     var_dump($pocet);
                     */
 
-                    if($delka < 1 || !$delka) {
-                        echo "
-                            <div
-                                class='errorI'
-                            >
+                    // kontrola vstupu uživatele a informovat ho o možnostech
+                    if($delka < 1 || $delka > 100 || !$delka) {
+                        echo '
+                            <div class="error">
                                 <p>
-                                    Neznámý počet slov!
+                                    Neznámý počet vět na řádek! Můžeš generovat 1-100 vět.
                                 </p>
                             </div>
-                        ";
+                        ';
+                        return;
                     }
 
-                    if($pocet < 1 || !$pocet) {
-                        echo "
-                            <div
-                                class='errorII'
-                            >
+                    if($pocet < 1 || $odstavce > 100 || !$pocet) {
+                        echo '
+                            <div class="error">
                                 <p>
-                                    Neznámý počet vět!
+                                    Neznámý počet odstavců! Můžeš generovat 1-100 odstavců.
                                 </p>
                             </div>
-                        ";
+                        ';
+                        return;
                     }
                 }
             ?>
         </div>
-        <div
-            class="opt"
-        >
+        <div class="opt">
             <?php
+                // co se na stránku vygeneruje
                 $generovat = new Gen($delka, $pocet);
                 echo $generovat->vystup();
             ?>
         </div>
     </body>
 </html>
+
+
+
+
+
+
+
+
+<!-- Github: https://github.com/MatyasSykorka -->
+ 
