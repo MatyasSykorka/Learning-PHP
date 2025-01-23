@@ -1,0 +1,27 @@
+body {
+    text-align: center;
+    background-color: whitesmoke;
+}
+
+form {
+    input {
+        background-color: gray;
+    }
+}
+
+.check {
+    .errorI {
+        background-color: red;
+        border: 2px;
+
+    }
+
+    .errorII {
+        background-color: red;
+    }
+}
+
+.opt {
+    border: 2px;
+    border-radius: 10rem;
+}
