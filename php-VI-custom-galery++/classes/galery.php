@@ -96,6 +96,7 @@
                         rounded-3xl
                         w-3/4
                         mt-4
+                        shadow-2xl
                     "
                 >'
             ;

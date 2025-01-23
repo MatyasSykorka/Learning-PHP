@@ -36,19 +36,21 @@
         <div
             id="upload-form"
             class="
-                pt-3 
-                pb-7 
-                pl-2 
-                pr-2 
-                ml-auto 
-                mr-auto 
-                mt-8 
-                w-2/4 
-                bg-gray-100 
-                border-black 
-                border-4 
-                rounded-3xl 
+                pt-3
+                pb-7
+                pl-2
+                pr-2
+                ml-auto
+                mr-auto
+                mt-8
+                w-2/4
+                bg-gray-100
+                border-black
+                border-4
+                rounded-3xl
                 text-center
+
+                shadow-2xl
             "
         >
             <form  
@@ -99,6 +101,107 @@
                         "
                     >
                 </div>
+
+                
+                <h2
+                    class="
+                        mt-4
+                        font-bold
+                    "
+                >
+                    Nastavení galerie
+                </h2>
+
+                <div
+                    class="
+                        border-px
+                        rounded-xl
+                        bg-gray-500
+                        p-2
+                        w-40
+                        ml-auto
+                        mr-auto
+                    "
+                >
+                    <form
+                        id="tableSettings"
+                        method="post"
+                        action=<?php
+                            echo $_SERVER['PHP_SELF'];
+                        ?>
+                    >
+                        <label 
+                            for="raws"
+                            class="
+                                font-bold
+                            "
+                        >
+                            Řádky
+                        </label>
+                        <input
+                            id="raws"
+                            class="
+                                w-10
+                                rounded
+                            "
+                            name="raws"
+                            value= <?= (isset($_POST['raws']) ? $_POST['raws'] : ""); ?>
+                        >
+                        <br>
+                        <label 
+                            for="cols"
+                            class="
+                                font-bold
+                            "
+                        >
+                            Sloupce
+                        </label>
+                        <input
+                            id="cols"
+                            class="
+                                w-10
+                                mt-1
+                                rounded
+                            "
+                            name="cols"
+                            value= <?= (isset($_POST['cols']) ? $_POST['cols'] : ""); ?>
+                        >
+                        <br>
+                        <input 
+                            type="submit"
+                            value="Nastavit"
+                        >
+                    </form>
+                </div>
+
+                <form 
+                    method="post"
+                    action=<?php
+                        echo $_SERVER['PHP_SELF'];
+                    ?>
+                >
+                    <label 
+                        for=""
+                    >
+                        Smazat obrázek - napiš název obrázku
+                    </label>
+                    <input
+                        id="fileNameInput"
+                        class="
+                            rounded
+                        "
+                        name="fileName"
+                        value= <?= (isset($_POST["fileName"]) ? $_POST["fileName"] : ""); ?>
+                    >
+                    <button 
+                        type="submit"
+                        class="
+                        
+                        "
+                    >
+                        Smazat
+                    </button>
+                </form>
             </form>
         </div>
 
@@ -180,8 +283,51 @@
                     );
                 }
 
+                /*
+                Funkce k úpravě galerie
+
+                if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                    $rows = strval(htmlspecialchars($_REQUEST['rows']));
+                    $cols = strval(htmlspecialchars($_REQUEST['cols']));
+
+                    var_dump($rows);
+
+                    if (empty($cols) || empty($rows)) {
+                        echo '
+                            <div>
+                                Není počet sloupců nebo řádku
+                            </div>
+                        ';
+                    }
+
+                    if ($cols > 12) {
+                        echo '
+                            <div
+                                class=" 
+                                    bg-red-500
+                                "
+                            >
+                                Too many columns for this table!
+                            </div>
+                        ';
+                    }
+                    if ($rows > 30) {
+                        echo '
+                            <div
+                                class="
+                                    bg-red-500
+                                "
+                            >
+                                Too many raws for this table!
+                            </div>
+                        ';
+                    }
+                }
+                */
+                
+
                 // Vytvoří tabulku galerii obrázků
-                $Obrazky = new fileDir("./pictures/preview/", 7, 0);
+                $Obrazky = new fileDir("./pictures/preview/", 7, 2);
                 echo $Obrazky->Vypis();
             ?>
         </div>
