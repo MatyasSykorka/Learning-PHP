@@ -8,5 +8,5 @@ Your code may work differently, because this code is written in Linux, but somet
 
 ![TailwindCSS](https://img.shields.io/badge/TailwindCSS-555555?style=for-the-badge&logo=tailwindcss&logoColorC=00bcff)
 
-![CSS](https://img.shields.io/badge/CSS-000?style=for-the-badge&logo=css&logoColorC=white)
+![CSS](https://img.shields.io/badge/CSS-darkred?style=for-the-badge&logo=css&logoColorC=white)
 
