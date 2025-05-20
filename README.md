@@ -2,7 +2,7 @@
 
 _This repository is for school purposes to learn PHP_
 
-Your code may work differently, because this code is written in Linux, but sometimes I'll try code in windows and make it "multiplatform".
+Your code may work differently, because this code is written in Linux, but sometimes I'll try code in Windows and make it "multiplatform".
 
 ![PHP](https://img.shields.io/badge/PHP-black?style=for-the-badge&logo=php&logoColorC=white)
 
