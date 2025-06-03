@@ -1,7 +1,16 @@
+07-photos/pictures/
+
 # custom gallery
-php-VI-custom-galery/myPic/full-size
-php-VI-custom-galery/myPic/preview
+08-custom-galery/myPic/full-size/
+08-custom-galery/myPic/preview/
 
 # custom gallery++
-php-VI-custom-galery++/pictures/full-size
-php-VI-custom-galery++/pictures/preview
+08-custom-galery++/pictures/full-size
+08-custom-galery++/pictures/preview
+
+# custom gallery-dedicnost
+08-custom-gallery-dedicnost/pictures/full-size
+08-custom-gallery-dedicnost/pictures/preview
+
+09-upload/images/
+
